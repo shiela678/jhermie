@@ -1,0 +1,152 @@
+<html><head><base href="https://websim.dev/namegen/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filipino Name Generator | Pangalan</title>
+
+<style>
+:root {
+  --primary: #bf0d3e;
+  --secondary: #fcd116;
+  --text: #333;
+  --bg: #fff;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  text-align: center;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.name-box {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin: 2rem 0;
+}
+
+#generatedName {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.info {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(0,0,0,0.05);
+  border-radius: 0.5rem;
+}
+
+.sun-animation {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<svg class="sun-animation" viewBox="0 0 100 100">
+  <path fill="#fcd116" d="M50 0 L54 46 L96 35 L58 65 L96 96 L50 70 L4 96 L42 65 L4 35 L46 46 Z">
+    <animate attributeName="d" dur="10s" repeatCount="indefinite"
+      values="M50 0 L54 46 L96 35 L58 65 L96 96 L50 70 L4 96 L42 65 L4 35 L46 46 Z;
+              M50 0 L58 42 L92 38 L62 68 L92 92 L50 75 L8 92 L38 68 L8 38 L42 42 Z;
+              M50 0 L54 46 L96 35 L58 65 L96 96 L50 70 L4 96 L42 65 L4 35 L46 46 Z"/>
+  </path>
+</svg>
+
+<div class="container">
+  <h1>Pangalan</h1>
+  <div class="subtitle">Filipino Name Generator</div>
+  
+  <div class="name-box">
+    <h2 id="generatedName">Click to generate a name!</h2>
+  </div>
+  
+  <button onclick="generateName()">Generate Name</button>
+  
+  <div class="info">
+    <p>These names are generated based on common Filipino naming patterns and influences from Spanish, English, and indigenous Filipino cultures.</p>
+  </div>
+</div>
+
+<script>
+const firstNames = {
+  male: ["Angelo", "Benjamin", "Carlos", "Daniel", "Eduardo", "Fernando", "Gabriel", "Henry", "Isaac", "Juan", "Kyle", "Lorenzo", "Marco", "Nathan", "Oscar", "Paolo", "Quezon", "Ramon", "Santiago", "Timothy"],
+  female: ["Andrea", "Bianca", "Carmen", "Diana", "Elena", "Frances", "Gloria", "Hannah", "Isabel", "Julia", "Katrina", "Luna", "Maria", "Nicole", "Olivia", "Patricia", "Queenie", "Rosa", "Sofia", "Teresa"]
+};
+
+const middleNames = ["de la Cruz", "del Rosario", "Santos", "Reyes", "Cruz", "Garcia", "Torres", "Ramos", "Mendoza", "Flores"];
+
+const lastNames = ["Aguirre", "Bautista", "Cruz", "Dela Rosa", "Evangelista", "Fernandez", "Gonzales", "Hernandez", "Ilustre", "Jimenez", "Kumar", "Lopez", "Martinez", "Navarro", "Ocampo", "Perez", "Quiambao", "Rodriguez", "Santos", "Trinidad"];
+
+function generateName() {
+  const gender = Math.random() < 0.5 ? 'male' : 'female';
+  const firstName = firstNames[gender][Math.floor(Math.random() * firstNames[gender].length)];
+  const middleName = middleNames[Math.floor(Math.random() * middleNames.length)];
+  const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+  
+  const name = `${firstName} ${middleName} ${lastName}`;
+  
+  const nameElement = document.getElementById('generatedName');
+  nameElement.style.opacity = 0;
+  
+  setTimeout(() => {
+    nameElement.textContent = name;
+    nameElement.style.opacity = 1;
+  }, 200);
+}
+
+// Add fade-in animation
+document.getElementById('generatedName').style.transition = 'opacity 0.3s ease-in-out';
+</script>
+
+</body></html>
